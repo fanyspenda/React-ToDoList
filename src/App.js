@@ -1,26 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import InputText from "./components/InputText";
+import Button from "./components/Button";
+import RadioTask from "./components/RadioButton";
+import Header from "./components/Header";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    textInput: "default value",
+    task: []
+  };
+
+  addTask = () => {
+    let task1 = this.state.task;
+    task1.push(this.state.textInput);
+
+    this.setState({
+      task: task1
+    });
+    console.log(this.state.task);
+  };
+
+  onChange = event => {
+    this.setState({
+      textInput: event.target.value
+    });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <InputText value={this.state.textInput} onChange={this.onChange} />
+        <Button onClick={this.addTask} />
+        <div className="todo" align="left">
+          <Header header="Todo List" />
+          <ul>
+            {this.state.task.map((value, index) => {
+              return (
+                <li key={index}>
+                  <RadioTask task={value} />
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        <div className="Done" align="left">
+          <Header header="Done" />
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
