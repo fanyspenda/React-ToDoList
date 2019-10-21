@@ -3,10 +3,17 @@ import React from "react";
 class RadioButton extends React.Component {
   render() {
     return (
-      <>
-        <input type="checkbox" checked={this.props.checked} />
+      <div>
+        <input
+          type="checkbox"
+          checked={this.props.checked}
+          onChange={this.props.onChange}
+          id={this.props.id}
+          name={this.props.name}
+          readOnly={this.props.readOnly}
+        />
         {this.props.task}
-      </>
+      </div>
     );
   }
 }

@@ -1,12 +1,9 @@
-import  React from "react";
+import styled from "styled-components";
 
-class Button extends React.Component {
+const Button = styled("button")`
+  padding: 10px 20px;
+  background-color: white;
+  border: solid 1px gray;
+`;
 
-    render() { 
-        return ( 
-            <button type="submit" onClick={this.props.onClick}>click to submit</button>
-         );
-    }
-}
- 
-export default Button
+export default Button;
